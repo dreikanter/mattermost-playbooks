@@ -1,0 +1,8 @@
+---
+- hosts: app
+  become: yes
+  roles:
+    # - bootstrap
+    # - firewall
+    - docker
+    - mattermost

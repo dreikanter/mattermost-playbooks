@@ -1,0 +1,19 @@
+---
+- name: "configuring mattermost omnibus repositories"
+  shell: |
+    curl -o- https://deb.packages.mattermost.com/repo-setup.sh | sudo bash
+  args:
+    warn: false
+
+- name: "safe upgrade packages"
+  apt:
+    name: mattermost-omnibus
+    update_cache: yes
+    dpkg_options: "force-confdef,force-confold"
+    state: latest
+
+- name: "safe upgrade packages"
+  apt:
+    update_cache: yes
+    dpkg_options: "force-confdef,force-confold"
+    upgrade: safe

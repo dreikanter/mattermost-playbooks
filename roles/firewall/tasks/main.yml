@@ -1,0 +1,24 @@
+---
+- name: "install UFW"
+  apt:
+    name: ufw
+    update_cache: yes
+    state: latest
+
+- name: "allow ssh"
+  community.general.ufw:
+    port: ssh
+    state: enabled
+    policy: allow
+
+- name: "allow http"
+  community.general.ufw:
+    port: http
+    state: enabled
+    policy: allow
+
+- name: "allow https"
+  community.general.ufw:
+    port: https
+    state: enabled
+    policy: allow

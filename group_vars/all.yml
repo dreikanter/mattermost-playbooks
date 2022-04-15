@@ -1,0 +1,6 @@
+---
+timezone: UTC
+locale: en_US.UTF-8
+
+letsencrypt_domain: mattermost.example.com
+letsencrypt_email: admin@example.com

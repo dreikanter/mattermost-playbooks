@@ -1,0 +1,13 @@
+---
+- name: "safe upgrade packages"
+  apt:
+    update_cache: yes
+    dpkg_options: "force-confdef,force-confold"
+    upgrade: safe
+
+- name: "install packages"
+  apt:
+    name:
+      - vim
+    state: latest
+    update_cache: true

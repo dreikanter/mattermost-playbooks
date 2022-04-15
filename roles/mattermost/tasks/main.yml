@@ -1,0 +1,29 @@
+---
+- name: "create directory"
+  file:
+    path: "/usr/src/{{ item }}"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "2000"
+  with_items:
+    - "./mattermost/docker"
+    - "./mattermost/volumes/app/mattermost/config"
+    - "./mattermost/volumes/app/mattermost/data"
+    - "./mattermost/volumes/app/mattermost/logs"
+    - "./mattermost/volumes/app/mattermost/plugins"
+    - "./mattermost/volumes/app/mattermost/client/plugins"
+    - "./mattermost/volumes/app/mattermost/bleve-indexes"
+
+- name: "ensure git is installed"
+  apt:
+    name: git
+    state: latest
+    update_cache: true
+
+- name: "get the sources"
+  git:
+    repo: "https://github.com/mattermost/docker"
+    clone: yes
+    update: yes
+    dest: "./mattermost/docker"
